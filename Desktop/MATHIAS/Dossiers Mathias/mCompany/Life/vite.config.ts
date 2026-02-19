@@ -5,7 +5,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: './', // Ensure assets are relative for GitHub Pages or subpath deployment
+    base: '/Life-Officiel/', // Updated to match repository name for GitHub Pages
     plugins: [
         react(),
 

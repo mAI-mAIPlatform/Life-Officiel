@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "description": "LIFE — Open World RPG Web Engine Core",
-    "homepage": "https://YOUR_USERNAME.github.io/life-rpg",
+    "homepage": "https://mAI-mAIPlatform.github.io/Life-Officiel",
     "scripts": {
         "dev": "vite",
         "typecheck": "tsc --noEmit",
