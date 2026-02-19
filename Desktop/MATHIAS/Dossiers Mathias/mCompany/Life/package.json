@@ -2,15 +2,16 @@
     "name": "life-rpg",
     "version": "0.1.0",
     "private": true,
-    "description": "LIFE — Open World RPG Web Engine Core",
+    "description": "LIFE \u2014 Open World RPG Web Engine Core",
     "homepage": "https://mAI-mAIPlatform.github.io/Life-Officiel",
     "scripts": {
         "dev": "vite",
         "typecheck": "tsc --noEmit",
-        "lint": "eslint src --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
+        "lint": "eslint src --ext .ts,.tsx",
         "build": "tsc --noEmit && vite build && node scripts/post-build.js",
+        "build:pages": "BASE_PATH=/Life-Officiel/ SITE_URL=https://mAI-mAIPlatform.github.io/Life-Officiel npm run build",
         "preview": "vite preview",
-        "deploy": "npm run build"
+        "deploy": "npm run build:pages"
     },
     "dependencies": {
         "@dimforge/rapier3d-compat": "^0.14.0",

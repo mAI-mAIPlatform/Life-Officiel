@@ -28,7 +28,7 @@ if (!existsSync(DIST)) {
 
 // ── Config ───────────────────────────────────────────────────────────────────
 
-const SITE_URL = process.env.SITE_URL ?? 'https://YOUR_USERNAME.github.io/life-rpg';
+const SITE_URL = process.env.SITE_URL ?? 'https://mAI-mAIPlatform.github.io/Life-Officiel';
 const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf-8'));
 const VERSION = pkg.version ?? '0.0.0';
 const BUILD_DATE = new Date().toISOString();
