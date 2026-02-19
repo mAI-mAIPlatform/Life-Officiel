@@ -1,0 +1,155 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+ * LIFE RPG — Global CSS (Glassmorphism 2030)
+ * Import order matters: Tailwind base → custom props → utility overrides
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── CSS Custom Properties ────────────────────────────────────────────────── */
+:root {
+    /* Glassmorphism tokens */
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-border: rgba(255, 255, 255, 0.10);
+    --glass-blur: 20px;
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    /* Neon palette */
+    --neon-cyan: #00f5ff;
+    --neon-violet: #b700ff;
+    --neon-pink: #ff2d78;
+    --neon-green: #00ff88;
+    --neon-amber: #ffb800;
+
+    /* Surfaces */
+    --surface-base: #0a0c12;
+    --surface-1: #12151f;
+    --surface-2: #1a1f2e;
+    --surface-3: #22293d;
+
+    /* UI Scale (accessibility) */
+    --ui-scale: 1;
+
+    /* Daltonism filter ID */
+    --daltonism-filter: none;
+}
+
+/* ── Base Reset ───────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--surface-base);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    filter: var(--daltonism-filter);
+}
+
+/* ── Glass Component ──────────────────────────────────────────────────────── */
+.glass {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+/* ── Neon Text ────────────────────────────────────────────────────────────── */
+.text-neon-cyan {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.text-neon-violet {
+    color: var(--neon-violet);
+    text-shadow: 0 0 10px var(--neon-violet);
+}
+
+.text-neon-pink {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+.text-neon-green {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 245, 255, 0.3);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 245, 255, 0.6);
+}
+
+/* ── Reduce Motion Overrides ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Programmatic reduce-motion (from SettingsStore) */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* ── HUD Layer Stack ──────────────────────────────────────────────────────── */
+.layer-world {
+    z-index: 10;
+}
+
+.layer-hud {
+    z-index: 100;
+}
+
+.layer-phone {
+    z-index: 200;
+}
+
+.layer-pause {
+    z-index: 300;
+}
+
+.layer-modal {
+    z-index: 400;
+}
+
+.layer-tooltip {
+    z-index: 500;
+}

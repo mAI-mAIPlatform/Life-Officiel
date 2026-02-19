@@ -1,0 +1,919 @@
+{
+    "meta": {
+        "version": "1.0.0",
+        "project": "LIFE_RPG",
+        "file": "factions_matrix",
+        "description": "Defines all factions in NeoCity, their inter-faction relations, territorial control, and hidden alliances/betrayals.",
+        "last_updated": "2026-02-19"
+    },
+    "factions": [
+        {
+            "id": "NCPD",
+            "name": "NeoCity Police Department",
+            "alias": "Les Bleus",
+            "tier": 3,
+            "type": "GOVERNMENT",
+            "description": "La police officielle de NeoCity. Sous-financée, corrompue en interne, mais avec quelques agents honnêtes. Les patrouilles sont concentrées dans les quartiers riches ; les bas-fonds sont laissés aux gangs. Budget officiel : 40% détourné par OmniCorp.",
+            "leader_npc_id": "NPC_COMMISSIONER_VARGA",
+            "hq_zone": "ZONE_PRECINCT_CENTRAL",
+            "controlled_zones": [
+                "ZONE_DOWNTOWN",
+                "ZONE_FINANCIAL",
+                "ZONE_MIDTOWN"
+            ],
+            "income_sources": [
+                "taxes",
+                "fines",
+                "omnicorp_subsidies",
+                "corruption"
+            ],
+            "military_strength": 75,
+            "political_influence": 60,
+            "public_perception": 35,
+            "recruitment_pool": [
+                "ex_military",
+                "academy_graduate",
+                "street_cop"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "ARMOR_NCPD_TACTIC",
+                "badge_id": "BADGE_NCPD_SHIELD",
+                "vehicle_ids": [
+                    "VEH_PATROL_CRUISER",
+                    "VEH_RIOT_VAN",
+                    "VEH_DRONE_UNIT"
+                ]
+            },
+            "tags": [
+                "law_enforcement",
+                "corrupt",
+                "bureaucratic",
+                "armed"
+            ]
+        },
+        {
+            "id": "OMNICORP",
+            "name": "OmniCorp Industries",
+            "alias": "La Tour",
+            "tier": 5,
+            "type": "MEGACORPORATION",
+            "description": "Le conglomérat qui possède NeoCity. Pharma, tech, immobilier, médias. Leur siège — la Spire — domine le skyline. Ils ont plus de pouvoir que le maire et contrôlent l'approvisionnement en eau, énergie et réseau. Les employés vivent dans des arcologies dorées. Les dissidents disparaissent.",
+            "leader_npc_id": "NPC_CEO_ELENA_CROSS",
+            "hq_zone": "ZONE_THE_SPIRE",
+            "controlled_zones": [
+                "ZONE_THE_SPIRE",
+                "ZONE_ARCOLOGY_NORTH",
+                "ZONE_BIOTECH_PARK",
+                "ZONE_MEDIA_PLAZA"
+            ],
+            "income_sources": [
+                "tech_sales",
+                "pharma",
+                "real_estate",
+                "government_contracts",
+                "data_harvesting"
+            ],
+            "military_strength": 90,
+            "political_influence": 95,
+            "public_perception": 55,
+            "recruitment_pool": [
+                "elite_graduate",
+                "headhunted_genius",
+                "corporate_climber"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "ARMOR_OMNI_EXECUTIVE",
+                "badge_id": "BADGE_OMNI_CLEARANCE",
+                "vehicle_ids": [
+                    "VEH_OMNI_LIMO",
+                    "VEH_OMNI_APC",
+                    "VEH_OMNI_VTOL"
+                ]
+            },
+            "tags": [
+                "corporate",
+                "elite",
+                "surveillance",
+                "ruthless",
+                "employer"
+            ]
+        },
+        {
+            "id": "NEON_SKULLS",
+            "name": "Neon Skulls",
+            "alias": "Les Crânes",
+            "tier": 2,
+            "type": "GANG",
+            "description": "Gang de rue spécialisé dans le trafic de drogues synthétiques (SynthDream, NeonDust) et le contrôle des boîtes de nuit. Esthétique néon, tatouages UV, violence spectaculaire. Recrutent des gamins des cités. Leur chef est un ancien chimiste d'OmniCorp viré pour expériences non autorisées.",
+            "leader_npc_id": "NPC_RAZR",
+            "hq_zone": "ZONE_NEON_MILE",
+            "controlled_zones": [
+                "ZONE_NEON_MILE",
+                "ZONE_CLUB_DISTRICT"
+            ],
+            "income_sources": [
+                "drug_trade",
+                "nightclub_racket",
+                "stolen_goods",
+                "underground_fights"
+            ],
+            "military_strength": 45,
+            "political_influence": 10,
+            "public_perception": 15,
+            "recruitment_pool": [
+                "street_kid",
+                "dropout",
+                "addict",
+                "runaway"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "ARMOR_SKULL_VEST",
+                "badge_id": "TATTOO_SKULL_UV",
+                "vehicle_ids": [
+                    "VEH_MODDED_BIKE",
+                    "VEH_LOWRIDER"
+                ]
+            },
+            "tags": [
+                "gang",
+                "drugs",
+                "violent",
+                "territorial",
+                "youth"
+            ]
+        },
+        {
+            "id": "IRON_BASTARDS",
+            "name": "Iron Bastards MC",
+            "alias": "Les Bâtards",
+            "tier": 2,
+            "type": "GANG",
+            "description": "Club de motards cybernétiques. Contrôlent les routes de contrebande et le marché noir de cyberware. Vétérans de guerre augmentés, code d'honneur brutal. Chaque membre a au moins 30% d'implants. Leur garage-forteresse est un no man's land pour la police.",
+            "leader_npc_id": "NPC_IRON_MOTHER",
+            "hq_zone": "ZONE_SCRAPYARD",
+            "controlled_zones": [
+                "ZONE_SCRAPYARD",
+                "ZONE_HIGHWAY_STRIP",
+                "ZONE_OLD_DOCKS"
+            ],
+            "income_sources": [
+                "cyberware_blackmarket",
+                "smuggling",
+                "chop_shop",
+                "protection_racket"
+            ],
+            "military_strength": 60,
+            "political_influence": 5,
+            "public_perception": 20,
+            "recruitment_pool": [
+                "veteran",
+                "mechanic",
+                "biker",
+                "augmented_addict"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "ARMOR_IB_CHROME_JACKET",
+                "badge_id": "PATCH_IRON_SKULL_CHROME",
+                "vehicle_ids": [
+                    "VEH_WARBIKE",
+                    "VEH_ARMORED_TRUCK"
+                ]
+            },
+            "tags": [
+                "gang",
+                "cyberware",
+                "smuggling",
+                "veterans",
+                "augmented"
+            ]
+        },
+        {
+            "id": "THE_SYNDICATE",
+            "name": "Le Syndicat",
+            "alias": "L'Ombre",
+            "tier": 4,
+            "type": "ORGANIZED_CRIME",
+            "description": "Organisation criminelle structurée comme une entreprise. Blanchiment, extorsion, trafic d'organes, assassinats sur commande. Infiltrés partout : politique, police, corpo. Leurs membres portent des costumes, pas des couleurs. Le boss est un fantôme — personne ne connaît son vrai visage.",
+            "leader_npc_id": "NPC_THE_ARCHITECT",
+            "hq_zone": "ZONE_UNKNOWN",
+            "controlled_zones": [
+                "ZONE_PORTSIDE",
+                "ZONE_OLD_QUARTER",
+                "ZONE_CHINATOWN"
+            ],
+            "income_sources": [
+                "money_laundering",
+                "organ_trade",
+                "contract_killing",
+                "extortion",
+                "smuggling",
+                "gambling"
+            ],
+            "military_strength": 70,
+            "political_influence": 80,
+            "public_perception": 5,
+            "recruitment_pool": [
+                "hitman",
+                "accountant",
+                "hacker",
+                "enforcer",
+                "disgraced_lawyer"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "ARMOR_SYNDICATE_SUIT",
+                "badge_id": "PIN_SYNDICATE_SIGIL",
+                "vehicle_ids": [
+                    "VEH_BLACK_SEDAN",
+                    "VEH_STEALTH_BOAT"
+                ]
+            },
+            "tags": [
+                "mafia",
+                "shadow",
+                "infiltration",
+                "professional",
+                "feared"
+            ]
+        },
+        {
+            "id": "RUST_UNION",
+            "name": "Le Syndicat Rouillé",
+            "alias": "La Rouille",
+            "tier": 2,
+            "type": "LABOR_UNION",
+            "description": "Syndicat ouvrier radical. Contrôlent les docks, les usines et les chantiers. Née de la colère des travailleurs remplacés par l'automatisation d'OmniCorp. Oscillent entre grèves pacifiques et sabotage industriel. Leur leader est une ancienne ouvrière d'usine qui a perdu un bras dans un accident couvert par la corpo.",
+            "leader_npc_id": "NPC_MAMA_KOWALSKI",
+            "hq_zone": "ZONE_FACTORY_ROW",
+            "controlled_zones": [
+                "ZONE_FACTORY_ROW",
+                "ZONE_CARGO_YARDS",
+                "ZONE_WORKER_BLOCKS"
+            ],
+            "income_sources": [
+                "union_dues",
+                "community_fund",
+                "sabotage_ransoms",
+                "black_market_labor"
+            ],
+            "military_strength": 35,
+            "political_influence": 40,
+            "public_perception": 65,
+            "recruitment_pool": [
+                "factory_worker",
+                "dock_worker",
+                "mechanic",
+                "displaced_worker"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "ARMOR_UNION_COVERALL",
+                "badge_id": "PATCH_RUST_FIST",
+                "vehicle_ids": [
+                    "VEH_CARGO_TRUCK",
+                    "VEH_FORKLIFT_MOD"
+                ]
+            },
+            "tags": [
+                "workers",
+                "resistance",
+                "sabotage",
+                "community",
+                "desperate"
+            ]
+        },
+        {
+            "id": "GHOST_NET",
+            "name": "GhostNet Collective",
+            "alias": "Les Fantômes",
+            "tier": 3,
+            "type": "HACKTIVIST",
+            "description": "Collectif de hackers anarchistes. Pas de leader officiel, structure décentralisée. Mènent des cyber-attaques contre OmniCorp et le gouvernement. Publient des leaks, sabotent les systèmes de surveillance. Certains membres sont des idéalistes, d'autres vendent leurs services au plus offrant.",
+            "leader_npc_id": "NPC_ZERO_DAY",
+            "hq_zone": "ZONE_UNDERNET_NODE",
+            "controlled_zones": [
+                "ZONE_UNDERNET_NODE",
+                "ZONE_TECH_BAZAAR"
+            ],
+            "income_sources": [
+                "hacking_contracts",
+                "data_theft",
+                "crypto_mining",
+                "info_brokering",
+                "donations"
+            ],
+            "military_strength": 15,
+            "political_influence": 50,
+            "public_perception": 45,
+            "recruitment_pool": [
+                "hacker",
+                "student",
+                "whistleblower",
+                "fired_tech_worker",
+                "ai_researcher"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "ARMOR_GHOST_HOODIE",
+                "badge_id": "MASK_GLITCH_FACE",
+                "vehicle_ids": [
+                    "VEH_DRONE_SWARM",
+                    "VEH_ELECTRIC_SCOOTER"
+                ]
+            },
+            "tags": [
+                "hackers",
+                "anarchist",
+                "decentralized",
+                "info_warfare",
+                "idealist"
+            ]
+        },
+        {
+            "id": "CHROME_CHURCH",
+            "name": "L'Église du Chrome",
+            "alias": "Les Chromés",
+            "tier": 2,
+            "type": "CULT",
+            "description": "Secte transhumaniste qui vénère l'augmentation cybernétique comme voie vers la transcendance. Leur gourou promet l'immortalité par la fusion homme-machine. Recrutent des désespérés avec des implants gratuits (qui contiennent des backdoors). Financement occulte — rumeur dit OmniCorp les utilise comme cobayes.",
+            "leader_npc_id": "NPC_PROPHET_NEXUS",
+            "hq_zone": "ZONE_CHROME_CATHEDRAL",
+            "controlled_zones": [
+                "ZONE_CHROME_CATHEDRAL",
+                "ZONE_IMPLANT_ALLEY"
+            ],
+            "income_sources": [
+                "tithes",
+                "cyberware_installation",
+                "organ_harvesting_rumor",
+                "omnicorp_funding_rumor"
+            ],
+            "military_strength": 30,
+            "political_influence": 20,
+            "public_perception": 25,
+            "recruitment_pool": [
+                "desperate_poor",
+                "cyber_addict",
+                "true_believer",
+                "lost_soul"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "ROBE_CHROME_PRIEST",
+                "badge_id": "SYMBOL_CIRCUIT_CROSS",
+                "vehicle_ids": [
+                    "VEH_AMBULANCE_MOD"
+                ]
+            },
+            "tags": [
+                "cult",
+                "transhumanist",
+                "manipulation",
+                "cyberware",
+                "fanatic"
+            ]
+        },
+        {
+            "id": "RED_MARKET",
+            "name": "Le Marché Rouge",
+            "alias": "Le Rouge",
+            "tier": 3,
+            "type": "BLACK_MARKET",
+            "description": "Réseau de marchands, receleurs et fixers indépendants. Pas une faction au sens strict — plutôt un écosystème commercial illégal. On y trouve TOUT : armes, drogues, organes, données volées, faux papiers, contrats d'assassinat. Gouverné par un conseil de marchands qui maintient 'la paix du commerce'.",
+            "leader_npc_id": "NPC_MERCHANT_PRINCE",
+            "hq_zone": "ZONE_UNDERGROUND_BAZAAR",
+            "controlled_zones": [
+                "ZONE_UNDERGROUND_BAZAAR",
+                "ZONE_SEWER_MARKET"
+            ],
+            "income_sources": [
+                "vendor_fees",
+                "commission",
+                "protection",
+                "info_brokering"
+            ],
+            "military_strength": 40,
+            "political_influence": 30,
+            "public_perception": 10,
+            "recruitment_pool": [
+                "merchant",
+                "smuggler",
+                "fixer",
+                "fence",
+                "forger"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "ARMOR_MARKET_APRON",
+                "badge_id": "TOKEN_RED_COIN",
+                "vehicle_ids": [
+                    "VEH_CARGO_VAN",
+                    "VEH_DELIVERY_DRONE"
+                ]
+            },
+            "tags": [
+                "commerce",
+                "illegal",
+                "neutral",
+                "everything_for_sale",
+                "network"
+            ]
+        },
+        {
+            "id": "FREE_CLINIC",
+            "name": "Clinique Libre",
+            "alias": "Les Docs",
+            "tier": 1,
+            "type": "NGO",
+            "description": "Organisation humanitaire clandestine qui fournit des soins médicaux gratuits aux habitants des bas-fonds. Dirigée par des médecins idéalistes qui ont quitté OmniCorp par dégoût. Chroniquement sous-financée. Certains d'entre eux pratiquent des chirurgies de cyberware au noir pour financer la clinique.",
+            "leader_npc_id": "NPC_DR_MENA",
+            "hq_zone": "ZONE_OLD_HOSPITAL",
+            "controlled_zones": [
+                "ZONE_OLD_HOSPITAL"
+            ],
+            "income_sources": [
+                "donations",
+                "grey_market_surgery",
+                "stolen_pharma"
+            ],
+            "military_strength": 5,
+            "political_influence": 15,
+            "public_perception": 85,
+            "recruitment_pool": [
+                "doctor",
+                "nurse",
+                "volunteer",
+                "ex_corpo_medic"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "COAT_MEDICAL_WORN",
+                "badge_id": "BADGE_CROSS_GREEN",
+                "vehicle_ids": [
+                    "VEH_AMBULANCE_OLD"
+                ]
+            },
+            "tags": [
+                "medical",
+                "humanitarian",
+                "underfunded",
+                "idealist",
+                "grey_market"
+            ]
+        },
+        {
+            "id": "CITY_HALL",
+            "name": "Mairie de NeoCity",
+            "alias": "La Façade",
+            "tier": 3,
+            "type": "GOVERNMENT",
+            "description": "Le gouvernement municipal, officiellement démocratique, en réalité une marionnette d'OmniCorp. Le maire est un politicien charismatique dont la campagne a été financée par la corpo. Les conseillers municipaux se partagent entre corrompus et impuissants. Les services publics s'effondrent.",
+            "leader_npc_id": "NPC_MAYOR_DUVAL",
+            "hq_zone": "ZONE_CITY_HALL",
+            "controlled_zones": [
+                "ZONE_CITY_HALL",
+                "ZONE_CIVIC_CENTER"
+            ],
+            "income_sources": [
+                "taxes",
+                "omnicorp_lobbying",
+                "federal_grants",
+                "graft"
+            ],
+            "military_strength": 10,
+            "political_influence": 70,
+            "public_perception": 30,
+            "recruitment_pool": [
+                "politician",
+                "bureaucrat",
+                "intern",
+                "lobbyist"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "SUIT_POLITICAL",
+                "badge_id": "PIN_CITY_SEAL",
+                "vehicle_ids": [
+                    "VEH_TOWNCAR",
+                    "VEH_MOTORCADE"
+                ]
+            },
+            "tags": [
+                "government",
+                "puppet",
+                "bureaucratic",
+                "corrupt",
+                "facade"
+            ]
+        },
+        {
+            "id": "SEWER_RATS",
+            "name": "Les Rats d'Égout",
+            "alias": "Les Rats",
+            "tier": 1,
+            "type": "OUTCASTS",
+            "description": "Communauté de sans-abris, réfugiés et parias vivant dans le réseau souterrain de NeoCity. Pas vraiment une faction organisée — plutôt une société parallèle avec ses propres règles. Certains sont des génies déchus, d'autres des fous dangereux. Connaissent chaque tunnel, chaque passage secret.",
+            "leader_npc_id": "NPC_OLD_KING",
+            "hq_zone": "ZONE_DEEP_TUNNELS",
+            "controlled_zones": [
+                "ZONE_DEEP_TUNNELS",
+                "ZONE_ABANDONED_METRO"
+            ],
+            "income_sources": [
+                "scavenging",
+                "salvage",
+                "tunnel_tolls",
+                "info_for_food"
+            ],
+            "military_strength": 20,
+            "political_influence": 0,
+            "public_perception": 5,
+            "recruitment_pool": [
+                "homeless",
+                "refugee",
+                "fugitive",
+                "madman",
+                "lost_child"
+            ],
+            "uniform_assets": {
+                "body_armor_id": "RAGS_LAYERED",
+                "badge_id": "NONE",
+                "vehicle_ids": [
+                    "VEH_SHOPPING_CART",
+                    "VEH_RAFT"
+                ]
+            },
+            "tags": [
+                "underground",
+                "invisible",
+                "survivors",
+                "knowledge",
+                "desperate"
+            ]
+        }
+    ],
+    "relations_matrix": {
+        "_comment": "Values range from -100 (blood war) to +100 (sworn allies). 0 = neutral/indifferent.",
+        "NCPD": {
+            "OMNICORP": 60,
+            "NEON_SKULLS": -70,
+            "IRON_BASTARDS": -65,
+            "THE_SYNDICATE": -50,
+            "RUST_UNION": -30,
+            "GHOST_NET": -55,
+            "CHROME_CHURCH": -15,
+            "RED_MARKET": -40,
+            "FREE_CLINIC": 10,
+            "CITY_HALL": 50,
+            "SEWER_RATS": -20
+        },
+        "OMNICORP": {
+            "NCPD": 60,
+            "NEON_SKULLS": -80,
+            "IRON_BASTARDS": -75,
+            "THE_SYNDICATE": -40,
+            "RUST_UNION": -90,
+            "GHOST_NET": -95,
+            "CHROME_CHURCH": 30,
+            "RED_MARKET": -20,
+            "FREE_CLINIC": -35,
+            "CITY_HALL": 85,
+            "SEWER_RATS": -50
+        },
+        "NEON_SKULLS": {
+            "NCPD": -70,
+            "OMNICORP": -80,
+            "IRON_BASTARDS": -60,
+            "THE_SYNDICATE": -30,
+            "RUST_UNION": 5,
+            "GHOST_NET": 15,
+            "CHROME_CHURCH": 10,
+            "RED_MARKET": 40,
+            "FREE_CLINIC": 0,
+            "CITY_HALL": -45,
+            "SEWER_RATS": -10
+        },
+        "IRON_BASTARDS": {
+            "NCPD": -65,
+            "OMNICORP": -75,
+            "NEON_SKULLS": -60,
+            "THE_SYNDICATE": -25,
+            "RUST_UNION": 20,
+            "GHOST_NET": 10,
+            "CHROME_CHURCH": -20,
+            "RED_MARKET": 50,
+            "FREE_CLINIC": 15,
+            "CITY_HALL": -40,
+            "SEWER_RATS": 5
+        },
+        "THE_SYNDICATE": {
+            "NCPD": -50,
+            "OMNICORP": -40,
+            "NEON_SKULLS": -30,
+            "IRON_BASTARDS": -25,
+            "RUST_UNION": -10,
+            "GHOST_NET": -35,
+            "CHROME_CHURCH": 5,
+            "RED_MARKET": 60,
+            "FREE_CLINIC": -5,
+            "CITY_HALL": 20,
+            "SEWER_RATS": -15
+        },
+        "RUST_UNION": {
+            "NCPD": -30,
+            "OMNICORP": -90,
+            "NEON_SKULLS": 5,
+            "IRON_BASTARDS": 20,
+            "THE_SYNDICATE": -10,
+            "GHOST_NET": 55,
+            "CHROME_CHURCH": -25,
+            "RED_MARKET": 10,
+            "FREE_CLINIC": 60,
+            "CITY_HALL": -50,
+            "SEWER_RATS": 30
+        },
+        "GHOST_NET": {
+            "NCPD": -55,
+            "OMNICORP": -95,
+            "NEON_SKULLS": 15,
+            "IRON_BASTARDS": 10,
+            "THE_SYNDICATE": -35,
+            "RUST_UNION": 55,
+            "CHROME_CHURCH": -10,
+            "RED_MARKET": 25,
+            "FREE_CLINIC": 45,
+            "CITY_HALL": -60,
+            "SEWER_RATS": 20
+        },
+        "CHROME_CHURCH": {
+            "NCPD": -15,
+            "OMNICORP": 30,
+            "NEON_SKULLS": 10,
+            "IRON_BASTARDS": -20,
+            "THE_SYNDICATE": 5,
+            "RUST_UNION": -25,
+            "GHOST_NET": -10,
+            "RED_MARKET": 20,
+            "FREE_CLINIC": -30,
+            "CITY_HALL": 5,
+            "SEWER_RATS": 15
+        },
+        "RED_MARKET": {
+            "NCPD": -40,
+            "OMNICORP": -20,
+            "NEON_SKULLS": 40,
+            "IRON_BASTARDS": 50,
+            "THE_SYNDICATE": 60,
+            "RUST_UNION": 10,
+            "GHOST_NET": 25,
+            "CHROME_CHURCH": 20,
+            "FREE_CLINIC": 30,
+            "CITY_HALL": -15,
+            "SEWER_RATS": 35
+        },
+        "FREE_CLINIC": {
+            "NCPD": 10,
+            "OMNICORP": -35,
+            "NEON_SKULLS": 0,
+            "IRON_BASTARDS": 15,
+            "THE_SYNDICATE": -5,
+            "RUST_UNION": 60,
+            "GHOST_NET": 45,
+            "CHROME_CHURCH": -30,
+            "RED_MARKET": 30,
+            "CITY_HALL": -10,
+            "SEWER_RATS": 50
+        },
+        "CITY_HALL": {
+            "NCPD": 50,
+            "OMNICORP": 85,
+            "NEON_SKULLS": -45,
+            "IRON_BASTARDS": -40,
+            "THE_SYNDICATE": 20,
+            "RUST_UNION": -50,
+            "GHOST_NET": -60,
+            "CHROME_CHURCH": 5,
+            "RED_MARKET": -15,
+            "FREE_CLINIC": -10,
+            "SEWER_RATS": -30
+        },
+        "SEWER_RATS": {
+            "NCPD": -20,
+            "OMNICORP": -50,
+            "NEON_SKULLS": -10,
+            "IRON_BASTARDS": 5,
+            "THE_SYNDICATE": -15,
+            "RUST_UNION": 30,
+            "GHOST_NET": 20,
+            "CHROME_CHURCH": 15,
+            "RED_MARKET": 35,
+            "FREE_CLINIC": 50,
+            "CITY_HALL": -30
+        }
+    },
+    "hidden_relations": [
+        {
+            "id": "HR_001",
+            "type": "SECRET_FUNDING",
+            "faction_a": "OMNICORP",
+            "faction_b": "CHROME_CHURCH",
+            "description": "OmniCorp finance secrètement l'Église du Chrome pour tester des prototypes de cyberware sur leurs fidèles. Les implants 'gratuits' contiennent des trackers et des modules de collecte de données neuronales.",
+            "discovery_difficulty": 8,
+            "quest_trigger": "QUEST_CHROME_CONSPIRACY",
+            "evidence_items": [
+                "ITEM_OMNI_TRANSFER_LOG",
+                "ITEM_IMPLANT_SCHEMATIC_BACKDOOR"
+            ]
+        },
+        {
+            "id": "HR_002",
+            "type": "DOUBLE_AGENT",
+            "faction_a": "NEON_SKULLS",
+            "faction_b": "NCPD",
+            "description": "Le lieutenant 'Pixel' des Neon Skulls est un indic de la NCPD depuis 3 ans. Il fournit des infos sur les livraisons de drogue en échange d'immunité. Son handler est le Capitaine Torres.",
+            "discovery_difficulty": 6,
+            "quest_trigger": "QUEST_SNITCH_HUNT",
+            "evidence_items": [
+                "ITEM_BURNER_PHONE_TEXTS",
+                "ITEM_NCPD_CONFIDENTIAL_FILE"
+            ]
+        },
+        {
+            "id": "HR_003",
+            "type": "SECRET_ALLIANCE",
+            "faction_a": "THE_SYNDICATE",
+            "faction_b": "CITY_HALL",
+            "description": "Le Maire Duval reçoit 200k$/mois du Syndicat en échange de la fermeture des yeux sur le trafic d'organes dans le Vieux Quartier. Trois conseillers municipaux sont aussi sur la payroll.",
+            "discovery_difficulty": 7,
+            "quest_trigger": "QUEST_FOLLOW_THE_MONEY",
+            "evidence_items": [
+                "ITEM_OFFSHORE_ACCOUNT_DATA",
+                "ITEM_DUVAL_BLACKMAIL_PHOTOS"
+            ]
+        },
+        {
+            "id": "HR_004",
+            "type": "ARMS_DEAL",
+            "faction_a": "IRON_BASTARDS",
+            "faction_b": "RUST_UNION",
+            "description": "Les Iron Bastards fournissent des armes de contrebande au Syndicat Rouillé pour leurs actions de sabotage contre OmniCorp. En échange, l'Union leur donne accès aux pièces détachées des usines.",
+            "discovery_difficulty": 4,
+            "quest_trigger": "QUEST_IRON_PIPELINE",
+            "evidence_items": [
+                "ITEM_WEAPONS_CRATE_MANIFEST",
+                "ITEM_UNION_REQUISITION_FORM"
+            ]
+        },
+        {
+            "id": "HR_005",
+            "type": "DATA_TRADE",
+            "faction_a": "GHOST_NET",
+            "faction_b": "THE_SYNDICATE",
+            "description": "Malgré leur idéologie, certains membres de GhostNet vendent des données volées au Syndicat. L'argent finance leurs opérations, mais ça crée des tensions internes. Le membre 'Cipher' est le contact.",
+            "discovery_difficulty": 5,
+            "quest_trigger": "QUEST_DIGITAL_JUDAS",
+            "evidence_items": [
+                "ITEM_ENCRYPTED_CHAT_LOG",
+                "ITEM_CRYPTO_TRANSACTION"
+            ]
+        },
+        {
+            "id": "HR_006",
+            "type": "ORGAN_PIPELINE",
+            "faction_a": "CHROME_CHURCH",
+            "faction_b": "RED_MARKET",
+            "description": "Les fidèles qui 'transcendent' à l'Église du Chrome ne disparaissent pas — leurs organes naturels sont revendus sur le Marché Rouge. Le Prophète Nexus touche 40% de la transaction.",
+            "discovery_difficulty": 9,
+            "quest_trigger": "QUEST_HARVEST_OF_FAITH",
+            "evidence_items": [
+                "ITEM_SURGICAL_ROOM_KEY",
+                "ITEM_ORGAN_INVENTORY_LEDGER"
+            ]
+        },
+        {
+            "id": "HR_007",
+            "type": "PROTECTION_PACT",
+            "faction_a": "RED_MARKET",
+            "faction_b": "SEWER_RATS",
+            "description": "Le Marché Rouge utilise les tunnels des Rats d'Égout pour ses routes de contrebande. En échange, les Rats reçoivent nourriture, médicaments et une 'immunité commerciale' dans le bazar souterrain.",
+            "discovery_difficulty": 3,
+            "quest_trigger": null,
+            "evidence_items": []
+        },
+        {
+            "id": "HR_008",
+            "type": "MOLE",
+            "faction_a": "OMNICORP",
+            "faction_b": "GHOST_NET",
+            "description": "L'agent OmniCorp 'Spectre' a infiltré GhostNet il y a 2 ans. Il sabote les opérations les plus dangereuses pour la corpo tout en montant en grade chez les hacktivistes. Zero_Day commence à avoir des soupçons.",
+            "discovery_difficulty": 8,
+            "quest_trigger": "QUEST_GHOST_IN_THE_MACHINE",
+            "evidence_items": [
+                "ITEM_OMNI_HANDLER_COMM",
+                "ITEM_SPECTRE_REAL_ID"
+            ]
+        },
+        {
+            "id": "HR_009",
+            "type": "CORRUPTION_RING",
+            "faction_a": "NCPD",
+            "faction_b": "NEON_SKULLS",
+            "description": "Le Capitaine Briggs et 4 officiers de la NCPD touchent un pourcentage sur les ventes de SynthDream dans le Neon Mile. Ils 'patrouillent' la zone mais ne font que collecter leur part.",
+            "discovery_difficulty": 5,
+            "quest_trigger": "QUEST_BAD_APPLES",
+            "evidence_items": [
+                "ITEM_BRIGGS_BANK_STATEMENT",
+                "ITEM_PATROL_ROUTE_ANOMALY"
+            ]
+        },
+        {
+            "id": "HR_010",
+            "type": "SECRET_RESEARCH",
+            "faction_a": "FREE_CLINIC",
+            "faction_b": "GHOST_NET",
+            "description": "Le Dr. Mena a découvert qu'OmniCorp teste un virus neurologique via l'eau de certains quartiers pauvres. GhostNet l'aide à collecter et analyser les données secrètement. Ils préparent un leak massif.",
+            "discovery_difficulty": 7,
+            "quest_trigger": "QUEST_WATERBORNE_TRUTH",
+            "evidence_items": [
+                "ITEM_WATER_SAMPLE_ANALYSIS",
+                "ITEM_OMNI_PROJECT_HYDRA_FILE"
+            ]
+        }
+    ],
+    "faction_events": {
+        "_comment": "Dynamic events that can shift faction relations during gameplay.",
+        "events": [
+            {
+                "id": "FEVENT_TURF_WAR",
+                "trigger_condition": {
+                    "relation_between": [
+                        "NEON_SKULLS",
+                        "IRON_BASTARDS"
+                    ],
+                    "threshold_below": -80
+                },
+                "description": "Guerre de territoire ouverte entre les Crânes et les Bâtards. Fusillade dans les rues, civils pris entre deux feux.",
+                "effects": {
+                    "NCPD": {
+                        "presence_modifier": 1.5,
+                        "aggression_modifier": 1.3
+                    },
+                    "zone_lockdown": [
+                        "ZONE_NEON_MILE",
+                        "ZONE_HIGHWAY_STRIP"
+                    ],
+                    "civilian_fear": 80,
+                    "relation_changes": {
+                        "NEON_SKULLS-IRON_BASTARDS": -20,
+                        "NCPD-NEON_SKULLS": -10,
+                        "NCPD-IRON_BASTARDS": -10
+                    }
+                }
+            },
+            {
+                "id": "FEVENT_CORPO_CRACKDOWN",
+                "trigger_condition": {
+                    "ghost_net_attack_success_count": 3
+                },
+                "description": "OmniCorp lance une opération de répression massive après trop d'attaques de GhostNet. Checkpoints partout, drones de surveillance doublés.",
+                "effects": {
+                    "OMNICORP": {
+                        "military_strength_bonus": 20
+                    },
+                    "NCPD": {
+                        "presence_modifier": 2.0
+                    },
+                    "GHOST_NET": {
+                        "heat_level": 95
+                    },
+                    "civilian_freedom": -40,
+                    "relation_changes": {
+                        "OMNICORP-GHOST_NET": -20,
+                        "RUST_UNION-OMNICORP": -15
+                    }
+                }
+            },
+            {
+                "id": "FEVENT_UNION_STRIKE",
+                "trigger_condition": {
+                    "rust_union_morale": {
+                        "above": 70
+                    },
+                    "omnicorp_approval": {
+                        "below": 40
+                    }
+                },
+                "description": "Grève générale du Syndicat Rouillé. Usines fermées, docks bloqués. Les prix de tout montent en flèche.",
+                "effects": {
+                    "economy_modifier": {
+                        "all_goods": 1.3,
+                        "manufactured_goods": 2.0
+                    },
+                    "OMNICORP": {
+                        "income_modifier": 0.6
+                    },
+                    "RUST_UNION": {
+                        "public_perception_bonus": 15
+                    },
+                    "relation_changes": {
+                        "RUST_UNION-OMNICORP": -25,
+                        "CITY_HALL-RUST_UNION": -15
+                    }
+                }
+            }
+        ]
+    }
+}

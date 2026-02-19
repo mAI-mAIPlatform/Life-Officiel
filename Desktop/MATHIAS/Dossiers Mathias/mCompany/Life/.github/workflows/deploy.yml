@@ -1,0 +1,62 @@
+name: 🚀 Build & Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+# Grant write permissions to deploy to gh-pages
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ── 2. Setup Node ───────────────────────────────────────────────
+      - name: 🟢 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # ── 3. Install dependencies ─────────────────────────────────────
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      # ── 4. TypeScript type check ────────────────────────────────────
+      - name: 🔍 TypeScript type check
+        run: npm run typecheck
+        # This step BLOCKS deployment if there are TypeScript errors
+
+      # ── 5. Pre-deploy (sitemap generation) ─────────────────────────
+      - name: 🗺️ Generate sitemap
+        run: node scripts/pre-deploy.js
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://YOUR_USERNAME.github.io/life-rpg' }}
+
+      # ── 6. Production build ─────────────────────────────────────────
+      - name: 🏗️ Build with Vite
+        run: npx vite build
+        env:
+          NODE_ENV: production
+
+      # ── 7. Deploy to gh-pages ───────────────────────────────────────
+      - name: 🌐 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          commit_message: "🤖 deploy: ${{ github.event.head_commit.message }}"
+          # Keep CNAME if present (for custom domains)
+          keep_files: false
