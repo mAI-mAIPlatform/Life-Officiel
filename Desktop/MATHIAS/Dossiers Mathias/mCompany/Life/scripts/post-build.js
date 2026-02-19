@@ -1,21 +1,30 @@
 #!/usr/bin/env node
 /**
- * pre-deploy.js — Pre-deployment script for LIFE RPG
+ * post-build.js — Post-build script for LIFE RPG
  *
- * Runs before every production build to:
+ * Runs AFTER the production build to:
  *  1. Generate a sitemap.xml in dist/ (SEO)
  *  2. Log build metadata (version, timestamp)
+ *  3. Create .nojekyll to prevent GitHub Pages from ignoring files
  *
- * Usage: node scripts/pre-deploy.js
- * Called automatically by: npm run deploy
+ * Usage: node scripts/post-build.js
+ * Called automatically by: npm run build
  */
 
-import { writeFileSync, mkdirSync, readFileSync } from 'fs';
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'fs';
 import { join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const ROOT = resolve(__dirname, '..');
+const DIST = join(ROOT, 'dist');
+
+// ── Validation ───────────────────────────────────────────────────────────────
+
+if (!existsSync(DIST)) {
+    console.error(`[post-build] ❌ 'dist' directory not found. Run 'vite build' first.`);
+    process.exit(1);
+}
 
 // ── Config ───────────────────────────────────────────────────────────────────
 
@@ -24,10 +33,11 @@ const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf-8'));
 const VERSION = pkg.version ?? '0.0.0';
 const BUILD_DATE = new Date().toISOString();
 
-// ── Ensure dist/ exists ───────────────────────────────────────────────────────
+// ── .nojekyll ────────────────────────────────────────────────────────────────
 
-const distDir = join(ROOT, 'dist');
-mkdirSync(distDir, { recursive: true });
+// Vital for GitHub Pages to serve files starting with "_" (like _assets)
+writeFileSync(join(DIST, '.nojekyll'), '', 'utf-8');
+console.info(`[post-build] ✅ .nojekyll created`);
 
 // ── Sitemap ──────────────────────────────────────────────────────────────────
 
@@ -48,8 +58,8 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 </urlset>
 `;
 
-writeFileSync(join(distDir, 'sitemap.xml'), sitemap, 'utf-8');
-console.info(`[pre-deploy] ✅ sitemap.xml written to dist/`);
+writeFileSync(join(DIST, 'sitemap.xml'), sitemap, 'utf-8');
+console.info(`[post-build] ✅ sitemap.xml written to dist/`);
 
 // ── Build metadata ────────────────────────────────────────────────────────────
 
@@ -60,6 +70,5 @@ const meta = {
     siteUrl: SITE_URL,
 };
 
-writeFileSync(join(distDir, 'build-meta.json'), JSON.stringify(meta, null, 2), 'utf-8');
-console.info(`[pre-deploy] ✅ build-meta.json written (v${VERSION} @ ${BUILD_DATE})`);
-console.info(`[pre-deploy] 🚀 Pre-deploy complete. Running Vite build next...`);
+writeFileSync(join(DIST, 'build-meta.json'), JSON.stringify(meta, null, 2), 'utf-8');
+console.info(`[post-build] ✅ build-meta.json written (v${VERSION} @ ${BUILD_DATE})`);

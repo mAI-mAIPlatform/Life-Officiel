@@ -8,10 +8,9 @@
         "dev": "vite",
         "typecheck": "tsc --noEmit",
         "lint": "eslint src --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
-        "build": "tsc --noEmit && vite build",
+        "build": "tsc --noEmit && vite build && node scripts/post-build.js",
         "preview": "vite preview",
-        "pre-deploy": "node scripts/pre-deploy.js",
-        "deploy": "npm run pre-deploy && npm run build"
+        "deploy": "npm run build"
     },
     "dependencies": {
         "@dimforge/rapier3d-compat": "^0.14.0",
